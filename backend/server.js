@@ -3,7 +3,21 @@ require("dotenv").config()
 require("./config/db.connection.js")
 const {PORT} = process.env
 const express = require("express")
+const journalRouter = require("./routes/journal-router.js")
 const app = express()
+const cors = require("cors")
+const morgan = require("morgan")
+
+// MIDDLEWARE
+app.use(express.urlencoded({extended:true}))
+app.use(express.json())
+app.use(cors())
+app.use(morgan("dev"))
+
+
+// MIDDLEWARE ROUTER
+app.use('/journal', journalRouter)
+
 
 // ROUTES
 app.get("/", (req, res) => {
