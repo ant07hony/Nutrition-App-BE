@@ -1,9 +1,11 @@
 const mongoose = require("mongoose")
 
 const JournalSchema = new mongoose.Schema({
-    name: String,
+    name: {type: String, required: true},
     image: String,
-    title: String
+    entry: String,
+    date: {type: Date, required: true},
+    time: Number,
 
 },{timestamps: true})
 
