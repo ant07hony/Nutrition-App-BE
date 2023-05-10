@@ -2,8 +2,8 @@ RESTful routing conventions
 
 | Path | Method | Action | Mongoose |  |
 | --- | --- | --- | --- | --- |
-| /people/ | GET | index | db.People.find() |  |
-| /people/ | POST | create | db.People.create(req.body) |  |
-| /people/:id | GET | show | db.findById(req.params.id) |  |
-| /people/:id | PUT | update | db.findById(req.parms.id, req.body, options) |  |
-| /people/:id | DELETE | destroy | db.findById(req.parms.id) |  |
+| /journal/ | GET | index | db.Journal.find() |  |
+| /journal/ | POST | create | db.Journal.create(req.body) |  |
+| /journal/:id | GET | show | db.findById(req.params.id) |  |
+| /journal/:id | PUT | update | db.findById(req.parms.id, req.body, options) |  |
+| /journal/:id | DELETE | destroy | db.findById(req.parms.id) |  |

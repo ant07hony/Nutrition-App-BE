@@ -1,6 +1,6 @@
 const express = require("express")
 const {Journal} = require("../models")
-const { options } = require("../routes/journal-router")
+
 
 // JOURNAL INDEX ACTION
 async function index(req, res, next){
@@ -18,6 +18,7 @@ async function create(req, res, next){
     try {
         // create new journal
         res.json(await Journal.create(req.body))
+        console.log(req.body)
 
     }catch(error){
         res.status(400).json(error)
