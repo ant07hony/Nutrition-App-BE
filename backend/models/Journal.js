@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const JournalSchema = new mongoose.Schema({
+const JournalEntrySchema = new mongoose.Schema({
     title: {type: String, required: true},
     date: {type: Date, required: true},
     time: {type: Number, required: true},
@@ -9,6 +9,6 @@ const JournalSchema = new mongoose.Schema({
     
 },{timestamps: true})
 
-const Journal = mongoose.model("Journal", JournalSchema)
+const JournalEntry = mongoose.model("JournalEntry", JournalEntrySchema)
 
-module.exports = Journal
+module.exports = JournalEntry
