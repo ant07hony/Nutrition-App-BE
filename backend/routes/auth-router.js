@@ -10,6 +10,6 @@ router.post("/register", authCtrl.register)
 // POST /auth/login
 router.post("/login", authCtrl.login)
 
-router.get("/logut", require, authCtrl.logout)
+router.get("/logout", require, authCtrl.logout)
 
 module.exports = router

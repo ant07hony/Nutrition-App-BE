@@ -2,6 +2,7 @@
 const express = require("express")
 const router = express.Router()
 const journalCtrl = require("../controllers/journal-controller")
+const { requireToken } = require("../middleware/auth")
 
 // ROUTES
 
