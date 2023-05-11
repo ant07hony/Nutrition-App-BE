@@ -1,14 +1,19 @@
 const mongoose = require("mongoose")
 
-const JournalEntrySchema = new mongoose.Schema({
+const JournalEntriesSchema = new mongoose.Schema({
     title: {type: String, required: true},
-    date: {type: Date, required: true},
-    time: {type: Number, required: true},
+    date: {type: Date, required: true, default: new Date()},
+    time: {type: Number, required: true, default: new Date().getTime()},
     description: {type: String, required: true},
-    entry: {type: String, reuired: true},
+    entry: {type: String, required: true},
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    }
     
 },{timestamps: true})
 
-const JournalEntry = mongoose.model("JournalEntry", JournalEntrySchema)
+const JournalEntries = mongoose.model("JournalEntries", JournalEntriesSchema)
 
-module.exports = JournalEntry
+module.exports = JournalEntries

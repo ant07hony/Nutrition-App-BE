@@ -1,12 +1,13 @@
 const express = require("express")
-const {JournalEntry} = require("../models")
+const {JournalEntries} = require("../models/Journal")
 
 
 // JOURNAL INDEX ACTION
 async function index(req, res, next){
     try {
         // get all journals
-        res.json(await JournalEntry.find({}))
+        res.status(200).json(await JournalEntries.find({}))
+        .populate('owner', 'username -_id')
 
     }catch(error){
         res.status(400).json(error)
@@ -17,7 +18,7 @@ async function index(req, res, next){
 async function create(req, res, next){
     try {
         // create new journal
-        res.json(await JournalEntry.create(req.body))
+        res.json(await JournalEntries.create(req.body))
         console.log(req.body)
 
     }catch(error){
@@ -29,7 +30,11 @@ async function create(req, res, next){
 async function detail(req, res, next){
     try {
         // send one journal
-        res.json(await JournalEntry.findById(req.params.id))
+        res.status(200).json(await JournalEntries.findById(req.params.id))
+        .populate("owner")
+        .exec()
+        
+        
 
     }catch(error){
         res.status(400).json(error)
@@ -40,7 +45,7 @@ async function detail(req, res, next){
 async function update(req, res, next){
     try {
         // send one journal
-        res.json(await JournalEntry.findByIdAndUpdate(req.params.id, req.body, {new:true}))
+        res.json(await JournalEntries.findByIdAndUpdate(req.params.id, req.body, {new:true}))
 
     }catch(error){
         res.status(400).json(error)
@@ -51,7 +56,7 @@ async function update(req, res, next){
 async function destroy(req, res, next){
     try {
         // send one journal
-        res.json(await JournalEntry.findByIdAndRemove(req.params.id))
+        res.json(await JournalEntries.findByIdAndRemove(req.params.id))
 
     }catch(error){
         res.status(400).json(error)

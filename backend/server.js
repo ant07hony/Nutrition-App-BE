@@ -4,6 +4,7 @@ require("./config/db.connection.js")
 const {PORT} = process.env
 const express = require("express")
 const journalRouter = require("./routes/journal-router.js")
+const authRouter = require("./routes/auth-router")
 const app = express()
 const cors = require("cors")
 const morgan = require("morgan")
@@ -17,6 +18,7 @@ app.use(morgan("dev"))
 
 // MIDDLEWARE ROUTER
 app.use('/journal', journalRouter)
+app.use("/auth", authRouter)
 
 
 // ROUTES
