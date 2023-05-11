@@ -1,5 +1,5 @@
 const express = require("express")
-const User = require("../models/User")
+const {User} = require("../models")
 const bcrypt = require("bcrypt")
 const { createUserToken } = require('../middleware/auth')
 
@@ -33,13 +33,13 @@ async function login(req, res, next) {
     try{
         const loggingUser = req.body.username
         const foundUser = await User.findOne({ username: loggingUser })
-        consttoken = await createUserToken(req, foundUser)
+        const token = await createUserToken(req, foundUser)
         res.status(200).json({
             user: foundUser,
             token,
         })
     }catch(err){
-        res.stats(401).json({ error: err.message })
+        res.status(401).json({ error: err.message })
     }
 }
 

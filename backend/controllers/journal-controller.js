@@ -1,6 +1,5 @@
 const express = require("express")
-const { JournalEntries } = require("../models/Journal")
-const { requireToken } = require("../middleware/auth")
+const { JournalEntries } = require("../models")
 const { handleValidateOwnership } = require("../middleware/auth")
 
 
@@ -8,11 +7,13 @@ const { handleValidateOwnership } = require("../middleware/auth")
 async function index(req, res, next) {
     try {
         // get all journals
-        res.status(200).json(await JournalEntries.find({}))
-            .populate('owner', 'username -_id')
+        const allEntries = await JournalEntries.find({}).populate('owner', 'username -_id')
+        res.status(200).json(allEntries)
+        // console.log(allEntries)
+            
 
-    } catch (error) {
-        res.status(400).json(error)
+    } catch (err) {
+        res.status(400).json({error: err.message})
     }
 }
 
@@ -37,10 +38,12 @@ async function create(req, res, next) {
 async function detail(req, res, next) {
     try {
         // send one journal
-        res.status(200).json(await JournalEntries.findById(req.params.id))
-            .populate("owner")
-            .exec()
-
+        const foundEntry = await JournalEntries.findById(req.params.id)
+        .populate("owner")
+        .exec()
+        res.status(200).json(foundEntry)
+        
+        // res.status(200).json(await JournalEntries.findById(req.params.id))
 
 
     } catch (error) {

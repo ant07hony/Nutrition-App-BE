@@ -18,7 +18,7 @@ app.use(morgan("dev"))
 
 // MIDDLEWARE ROUTER
 app.use('/journal', journalRouter)
-app.use("/auth", authRouter)
+app.use('/auth', authRouter)
 
 
 // ROUTES
