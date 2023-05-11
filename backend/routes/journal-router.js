@@ -9,15 +9,15 @@ const journalCtrl = require("../controllers/journal-controller")
 router.get('/', journalCtrl.index)
 
 // JOURNAL CREATE ROUTE
-router.post('/', journalCtrl.create)
+router.post('/', requireToken, journalCtrl.create)
 
 // JOURNAL SHOW(detail) ROUTE
 router.get('/:id', journalCtrl.getOne)
 
 // JOURNAL UPDATE ROUTE
-router.put('/:id', journalCtrl.update)
+router.put('/:id', requireToken, journalCtrl.update)
 
 // JOURNAL DELETE ROUTE
-router.delete('/:id', journalCtrl.delete)
+router.delete('/:id', requireToken, journalCtrl.delete)
 
 module.exports = router

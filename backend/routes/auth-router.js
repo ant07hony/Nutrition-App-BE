@@ -8,6 +8,8 @@ router.post("/register", authCtrl.register)
 
 // SIGN IN
 // POST /auth/login
-router.post("/login", async (req, res, next) => {})
+router.post("/login", authCtrl.login)
+
+router.get("/logut", require, authCtrl.logout)
 
 module.exports = router
