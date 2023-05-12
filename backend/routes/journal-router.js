@@ -13,7 +13,7 @@ router.get('/', journalCtrl.index)
 router.post('/', requireToken, journalCtrl.create)
 
 // JOURNAL SHOW(detail) ROUTE
-router.get('/:id', journalCtrl.getOne)
+router.get('/:id', requireToken, journalCtrl.getOne)
 
 // JOURNAL UPDATE ROUTE
 router.put('/:id', requireToken, journalCtrl.update)

@@ -13,7 +13,7 @@ async function register(req, res, next){
         req.body.password = passwordHash
 
         const newUser = await User.create(req.body)
-
+        console.log(newUser)
         if (newUser){
             req.body.password = cachedPW
             const authenticatedUserToken = createUserToken(req, newUser)

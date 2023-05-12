@@ -20,7 +20,7 @@ async function index(req, res, next) {
 // JOURNAL CREATE ACTION
 async function create(req, res, next) {
     try {
-        // create new journal
+        // create new journal entry
         const owner = req.user._id
         req.body.owner = owner
 

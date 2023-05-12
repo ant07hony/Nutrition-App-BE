@@ -26,5 +26,9 @@ app.get("/", (req, res) => {
     res.send("Hello You Filthy Animal")
 })
 
+app.get("/register", (req, res) => {
+    res.send("This is GET /register")
+})
+
 // LISTENER
 app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`))
