@@ -3,6 +3,8 @@ const { JournalEntries } = require("../models")
 const { handleValidateOwnership } = require("../middleware/auth")
 
 
+
+
 // JOURNAL INDEX ACTION
 async function index(req, res, next) {
     try {
@@ -19,6 +21,7 @@ async function index(req, res, next) {
 
 // JOURNAL CREATE ACTION
 async function create(req, res, next) {
+    // console.log('testing user' ,req.user)
     try {
         // create new journal entry
         const owner = req.user._id
@@ -27,7 +30,8 @@ async function create(req, res, next) {
         const newEntry = await JournalEntries.create(req.body)
         // console.log(req.body)
         res.status(201).json(newEntry)
-    } catch (error) {
+    } catch (err) {
+        // console.log(err)
         res.status(400).json({
             error: err.message,
         })
@@ -36,9 +40,12 @@ async function create(req, res, next) {
 
 // JOURNAL SHOW ACTION
 async function detail(req, res, next) {
+    console.log(req.params.id)
     try {
         // send one journal
         const foundEntry = await JournalEntries.findById(req.params.id)
+        // console.log(foundEntry)
+        // console.log(req.params.id)
         .populate("owner")
         .exec()
         res.status(200).json(foundEntry)

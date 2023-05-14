@@ -3,6 +3,7 @@ const {User} = require("../models")
 const bcrypt = require("bcrypt")
 const { createUserToken } = require('../middleware/auth')
 
+
 async function register(req, res, next){
     try{
         const salt = await bcrypt.genSalt(10)
@@ -21,10 +22,12 @@ async function register(req, res, next){
                 user: newUser,
                 token: authenticatedUserToken,
             })
+
         }else {
             throw new Error("Something went wrong")
         }
     }catch(err){
+        console.log(err)
         res.status(400).json({ err: err.message })
     }
 }
@@ -39,6 +42,7 @@ async function login(req, res, next) {
             token,
         })
     }catch(err){
+        console.log(err)
         res.status(401).json({ error: err.message })
     }
 }
@@ -57,4 +61,5 @@ module.exports = {
     register,
     login,
     logout,
+    
 }

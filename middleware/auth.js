@@ -15,9 +15,10 @@ const opts = {
 
 // AUTH FUNCTIONALITY
 const verify = async (jwt_payload, done) => {
+    console.log(jwt_payload)
     try{
         const user = await User.findById(jwt_payload.id)
-        return done(null, User)
+        return done(null, user)
 
     }catch(err){
         return done(err)

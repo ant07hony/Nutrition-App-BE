@@ -10,9 +10,15 @@ const JournalEntriesSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
-    }
+    },
+    basket: [ 
+        { type: mongoose.Schema.Types.ObjectId,
+        ref: 'Basket' }
+     ]
     
-},{timestamps: true})
+},{
+    timestamps: true
+})
 
 const JournalEntries = mongoose.model("JournalEntries", JournalEntriesSchema)
 
